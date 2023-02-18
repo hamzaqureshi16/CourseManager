@@ -6,7 +6,7 @@ $unmae= "root";
 
 $password = "";
 
-$db_name = "phptest";
+$db_name = "coursemanager";
 
 $conn = mysqli_connect($sname, $unmae, $password, $db_name);
 
