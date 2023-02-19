@@ -16,13 +16,13 @@ function App() {
     <div className="App">
         {!isLoggedIn && <div>
           <Routes>
-            <Route path='/' index element={<Signup handleLogin = {setisLoggedIn} handleUsername = {setusername}/>}></Route>
-            <Route path='/login' element={<Login/>}></Route>
+            <Route path='/' index element={<Signup />}></Route>
+            <Route path='/login' element={<Login handleLogin = {setisLoggedIn} handleUsername = {setusername}/>}></Route>
           </Routes>
         </div>
         }
         {isLoggedIn && <div>
-          <Navbar></Navbar>
+          <Navbar username = {username}></Navbar>
         <Routes> 
           <Route path='/' index element={<Home />}></Route>
           <Route path='/apply' element={<Form />}></Route>

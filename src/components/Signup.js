@@ -2,14 +2,20 @@ import React from 'react';
 import { useState,useEffect } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+export const inputstyle = {
+    width:"100%",
+    height:"45px",
+    margin:"10px"
+}
+export const headingStyle = {
+    color:"white",
+    textAlign:"center",
+    margin:"10px"
 
-export default function Signup(props) {
+}
+export default function Signup() {
     const navigation = useNavigate();
-    const inputstyle = {
-        width:"100%",
-        height:"50px",
-        margin:"10px"
-    }
+  
 
     const [isTeacher,setisTeacher] = useState(false); 
     const [sessionsGenerated, setSessionsGenerated] = useState(false);
@@ -57,6 +63,10 @@ const calcSemester = (session) =>{
     }
      return sem>8?"graduated":sem;
 }
+
+
+
+
 const handleSubmit=(e)=>{
     e.preventDefault();
     if(!isTeacher){
@@ -83,10 +93,22 @@ const handleSubmit=(e)=>{
       .catch((error)=>{
           console.log(error);
       })
-     // navigation('/login');
+      navigation('/login');
 }
+
+const loginbtn = {
+    float:"left",
+    height:"45px",
+    margin:"10px",
+    color:"black",
+    border:"none"
+
+}
+
     return (
     <div className='App-header'>
+        
+        <h1 style={headingStyle}>Sign Up</h1>
         <form onSubmit={e=>handleSubmit(e)} autoComplete='off'>
         <label htmlFor="name">Name:
         <input required onChange={e=>handelChange(e)} minLength="3" maxLength='100' type="text" name="name" id="name" placeholder='Full Name' className='rounded' style={inputstyle} /></label>
@@ -128,6 +150,7 @@ const handleSubmit=(e)=>{
             </div>)
             }
         <button className='btn btn-primary m-3'>Submit</button>
+        <input type="button" value="Go To Login" onClick={e=>navigation('/login')} className='btn rounded btn-primary'  />
 
         </form>
     </div>

@@ -35,9 +35,8 @@ const submit = (e) => {
     const data = new FormData();
     data.append('name',name);
     data.append('email',email);
+    axios.post('http://localhost:80/coursemanager/src/service/Api.php',data).then(res => alert(res.data));
 
-      axios.post('http://localhost:80/coursemanager/src/service/Api.php',data).then(res => alert(res.data));
-        navigate('/home');
 }
 
 

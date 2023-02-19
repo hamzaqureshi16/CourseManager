@@ -1,7 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 
-export default function Navbar() {
+export default function Navbar(props) {
   return (
     <div>
       
@@ -20,6 +20,7 @@ export default function Navbar() {
             </li>
             </ul>
             
+          <h1>{props.username}</h1>
         </div>
       </nav>
     </div>
