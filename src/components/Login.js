@@ -19,10 +19,13 @@ export default function Login(props) {
 
         axios.post('http://localhost:80/coursemanager/src/service/login.php',data)
         .then(res=>{
-            console.log(res.data);
-            if(res.data === "Login Successfull"){
+            console.log(typeof(res.data.role));
+            if(res.data.role === 'student' || res.data.role === 'teacher'){
                 props.handleLogin(true);
                 props.handleUsername(UserName);
+                props.handlerole(res.data.role);
+                props.handelid(res.data.id);
+                navigate('/');
                 
             }
             else{

@@ -12,9 +12,16 @@ $stmt = $conn->prepare($sql);
 $stmt->bind_param("ss", $username, $password);
 $stmt->execute();
 $result = $stmt->get_result();
+//extract the result
+
 
 if ($result->num_rows > 0) {
-   echo 'Login Successfull';
+    $row = $result->fetch_assoc();
+    $ret = array("role"=>$row['role'],
+    "id"=>$row['id']
+);
+
+    echo json_encode($ret);
 } else {
   echo "Invalid username or password";
 }

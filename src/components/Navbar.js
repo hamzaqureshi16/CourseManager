@@ -18,10 +18,15 @@ export default function Navbar(props) {
             <li className="nav-item">
               <Link className="nav-link" to="/apply">Apply</Link>
             </li>
-            </ul>
+          </ul>
             
-          <h1>{props.username}</h1>
+          
+          
         </div>
+        <div className='d-flex'>
+            <h1 className='text-light fs-4 pt-2'> <u>{props.username}</u></h1>  
+            <button className='btn btn-danger rounded m-2' onClick={e=>props.handlelogout(false)}>Logout</button>
+          </div>  
       </nav>
     </div>
   )
