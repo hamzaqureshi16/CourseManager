@@ -1,7 +1,6 @@
 import React from 'react'
-import { useState } from 'react'
+import { useEffect } from 'react'
 import axios from 'axios';
-import { tab } from '@testing-library/user-event/dist/tab';
 export default function Home(props) {
     const tablestyle ={
         border:"5px",
@@ -12,24 +11,46 @@ export default function Home(props) {
 
     }
     
-    const [data,setdata] = useState([]);
+    let data = [];
    
 
-    const renderStudent = () =>{
+    const renderStudent =  () =>{
 
        axios.get('http://localhost:80/coursemanager/src/service/GetStudent.php?id=' + props.id)
   .then(response => {
-    console.log(response.data);
+    if(response.data.status === 'ok'){
+        delete response.data.status;
+        
+        for(let i = 0; i < Object.keys(response.data).length; i++){
+            data.push(response.data[i]);
+        }
+
+    }
   });
 
   return (<table style={tablestyle}> 
+    <tbody>
     <tr>
-        <th>Course ID</th>
+        <th>Course ID{props.role}</th>
         <th>Couse Name</th>
         <th>Credit Hours</th>
         <th>Department</th>
         <th>Class</th>
     </tr>
+    {data.map((item) => (
+        <tr>
+            {console.log(item)}
+            <td>{item.c_id}</td>
+            <td>{item.c_name}</td>
+            <td>{item.c_hours}</td>
+            <td>{item.department}</td>
+            <td>{item.class}</td>
+        </tr>
+    ))}
+
+    </tbody>
+
+
 </table>);
     } 
 
